@@ -1,0 +1,30 @@
+{
+  "name": "maxim/easy-bundle",
+  "version": "0.0.1",
+  "type": "symfony-bundle",
+  "description": "Symfony easy bundle",
+  "lisence": "MIT",
+  "require": {
+    "php": ">=7.4",
+    "ext-ctype": "*",
+    "ext-iconv": "*",
+    "symfony/flex": "^1.0",
+    "symfony/framework-bundle": "^4.4",
+    "sensio/framework-extra-bundle": "^5.2",
+    "symfony/lts": "^4@dev",
+    "symfony/yaml": "^4.4"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Maxim\\EasyBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Maxim\\EasyBundle\\Tests": "tests/"
+    }
+  }
+}
