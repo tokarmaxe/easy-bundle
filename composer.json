@@ -1,6 +1,6 @@
 {
   "name": "maxim/easy-bundle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "symfony-bundle",
   "description": "Symfony easy bundle",
   "lisence": "MIT",
