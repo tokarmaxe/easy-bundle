@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Maxim\EasyBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
