@@ -1,0 +1,4 @@
+easybundle.get_post:
+  path: /
+  defaults: { _controller: easy_bundle.post.controller:get }
+  methods: [ POST ]

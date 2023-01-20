@@ -18,12 +18,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Maxim\\EasyBundle\\": "src/"
+      "Maxim\\EasyBundle\\": ""
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Maxim\\EasyBundle\\Tests": "tests/"
+      "Maxim\\EasyBundle\\Tests": "Tests/"
     }
   }
 }
