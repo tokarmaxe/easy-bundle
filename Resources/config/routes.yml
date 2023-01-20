@@ -1,4 +1,4 @@
 easybundle.get_post:
   path: /get
-  defaults: { _controller: easy_bundle.post.controller:get }
+  defaults: { _controller: MaximEasyBundle:Post:get }
   methods: [ GET ]
