@@ -5,3 +5,33 @@ services:
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  Maxim\EasyBundle\Controller\:
+    resource: '../../Controller/'
+    tags: [ 'controller.service_arguments' ]
+
+  Maxim\EasyBundle\Repository\:
+    resource: '../../Repository'
+
+  Maxim\EasyBundle\Command\:
+    resource: '../../Command'
+
+  post.repository:
+    class: Maxim\EasyBundle\Repository\PostRepository
+    factory: ['@doctrine.orm.default_entity_manager', getRepository]
+    arguments: ['Maxim\EasyBundle\Entity\PostEntity']
+  post.controller:
+    class: Maxim\EasyBundle\Controller\PostController
+    arguments:
+      - '@post.repository'
+#  MaximEasyBundle\Repository\PostRepository:
+#    autowire: true
+#  MaximEasyBundle\Controller\PostController:
+#    autowire: true
+#    arguments:
+#      - '@MaximEasyBundle\Repository\PostRepository'
+#  Maxim\EasyBundle\Controller\PostController:
+#    arguments:
+#      - '@Maxim\EasyBundle\Repository\PostRepository'
+#  Maxim\EasyBundle\Repository\PostRepository:
+#      autowire: true

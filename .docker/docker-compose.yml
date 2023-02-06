@@ -1,0 +1,55 @@
+version: "3.3"
+services:
+  nginx:
+    networks:
+      new:
+    image: nginx:latest
+    volumes:
+      - ../:/var/www/html
+      - "phpsocket:/var/run"
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      PHP_FPM_HOST: php-fpm
+      PHP_FPM_PORT: 9000
+    ports:
+      - "8080:80"
+
+  php-fpm:
+    networks:
+      new:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../:/var/www/html
+      - "phpsocket:/var/run"
+    environment:
+      XDEBUG_CONFIG: remote_enable=1 remote_host=172.17.0.1
+      PHP_IDE_CONFIG: serverName=symfony-ebundle
+
+  database:
+    restart: always
+    image: mysql:8
+    networks:
+      new:
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bundle
+      MYSQL_USER: max
+      MYSQL_PASSWORD: maxpass
+    volumes:
+      - /home/maxim/PhpstormProjects/ebundle/mysql:/var/lib/mysql
+    ports:
+      - "9906:3306"
+
+  gearman:
+    restart: always
+    image: artefactual/gearmand:latest
+    networks:
+      new:
+    ports:
+      - "4730:4730"
+
+networks:
+  new:
+volumes:
+  phpsocket:

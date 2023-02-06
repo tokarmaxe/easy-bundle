@@ -1,0 +1,4 @@
+doctrine:
+  dbal:
+#    url:                  mysql://db_user:db_password@127.0.0.1:3306/db_name
+    url:                  mysql://max:maxpass@172.17.0.1:9906/bundle
