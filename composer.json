@@ -25,7 +25,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Maxim\\EasyBundle\\Tests\\": "Tests/"
+      "Maxim\\EasyBundle\\Tests\\": "tests/"
     }
   },
   "scripts": {
@@ -41,6 +41,7 @@
     "doctrine/doctrine-migrations-bundle": "^3.2",
     "doctrine/migrations": "^3.5",
     "doctrine/orm": "^2.0",
+    "mockery/mockery": "^1.5",
     "phpunit/php-code-coverage": "^9.2",
     "phpunit/phpunit": "^9.5",
     "symfony/browser-kit": "^3.4|^4.0",

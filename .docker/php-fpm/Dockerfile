@@ -8,6 +8,14 @@ RUN apt update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
+RUN apt-get install -y libpng-dev
+RUN apt-get update -yqq && \
+    docker-php-ext-install pdo &&  \
+   docker-php-ext-install pdo_mysql && \
+    docker-php-ext-configure gd && \
+    docker-php-ext-install gd
+
+#RUN docker-php-ext-install gd
 
 RUN docker-php-ext-install pcntl
 

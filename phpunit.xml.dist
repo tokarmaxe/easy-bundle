@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="Tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" colors="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" colors="true">
   <php>
     <ini name="display_errors" value="1" />
     <ini name="error_reporting" value="-1" />
@@ -20,24 +20,21 @@
         <!--  -->
         <!-- DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db" -->
         <!-- DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8&charset=utf8mb4" -->
-        <env name="DATABASE_URL" value="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=15&amp;charset=utf8"/>
+<!--        <env name="DATABASE_URL" value="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=15&amp;charset=utf8"/>-->
+        <env name="DATABASE_URL" value="mysql://max:maxpass@172.17.0.1:9906/bundle?serverVersion=8&amp;charset=utf8mb4"/>
         <!-- ###- doctrine/doctrine-bundle ### -->
   </php>
   <coverage processUncoveredFiles="true ">
     <include>
-      <directory>./</directory>
+      <directory>./src</directory>
     </include>
     <report>
       <html outputDirectory="./var/codeCoverage" lowUpperBound="40" highLowerBound="75"/>
     </report>
     <exclude>
-      <directory>./Resources</directory>
-      <directory>./Tests</directory>
-      <directory>./var</directory>
-      <directory>./vendor</directory>
-      <directory>./DependencyInjection</directory>
-      <directory>./MaximEasyBundle.php</directory>
-      <directory>./cli-config.php</directory>
+      <directory>src/Kernel.php</directory>
+      <directory>src/DependencyInjection</directory>
+      <directory>src/MaximEasyBundle.php</directory>
     </exclude>
   </coverage>
 <!--  <listeners>-->
@@ -45,7 +42,7 @@
 <!--  </listeners>-->
   <testsuites>
     <testsuite name="MyBundle test suite">
-      <directory suffix="Test.php">./Tests</directory>
+      <directory suffix="Test.php">./tests</directory>
     </testsuite>
   </testsuites>
 </phpunit>
