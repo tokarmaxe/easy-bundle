@@ -39,7 +39,6 @@
     "doctrine/doctrine-bundle": "^2.7",
     "doctrine/doctrine-fixtures-bundle": "^3.4",
     "doctrine/doctrine-migrations-bundle": "^3.2",
-    "doctrine/migrations": "^3.5",
     "doctrine/orm": "^2.0",
     "mockery/mockery": "^1.5",
     "phpunit/php-code-coverage": "^9.2",
