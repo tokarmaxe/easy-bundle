@@ -6,6 +6,7 @@ use Maxim\EasyBundle\Tests\TestKernel;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\Process\Process;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -23,8 +24,5 @@ $container = $kernel->getContainer();
  */
 $entityManager = $container->get('doctrine.orm.default_entity_manager');
 
-$migration = new MigrateCommand();
-$migration->setName(str_replace('migrations:', '', $migration->getName()));
-$input = new ArgvInput;
-$input->setInteractive(false);
-$migration->run($input, new ConsoleOutput());
+$process = new Process(['php','bin/console', 'doctrine:migrations:migrate', '--no-interaction']);
+$process->run();
