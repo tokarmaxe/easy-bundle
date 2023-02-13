@@ -24,5 +24,6 @@ $container = $kernel->getContainer();
  */
 $entityManager = $container->get('doctrine.orm.default_entity_manager');
 
-$process = new Process(['php','bin/console', 'doctrine:migrations:migrate', '--no-interaction']);
-$process->run();
+//$process = new Process(['php','bin/console', 'doctrine:migrations:migrate', '--no-interaction']);
+//$process->run();
+//$process->stop();

@@ -2,7 +2,6 @@
 
 namespace Maxim\EasyBundle\Command;
 
-use GearmanClient;
 use Maxim\EasyBundle\Queue\Worker\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +14,7 @@ class GearmanClientCommand extends Command
 
     private Client $client;
 
-    public function configure():void
+    public function configure(): void
     {
         $this->addOption(
             'string',

@@ -2,6 +2,8 @@
 
 namespace Maxim\EasyBundle\Tests\Unit\Queue\Worker;
 
+use GearmanJob;
+use GearmanWorker;
 use Maxim\EasyBundle\Queue\Worker\DBWriteHandler;
 use Maxim\EasyBundle\Queue\Worker\Factory\WorkerFactory;
 use Maxim\EasyBundle\Queue\Worker\Worker;
@@ -11,12 +13,17 @@ class WorkerTest extends TestCase
 {
     public function testWorkerHost()
     {
+        $gearmanJob = \Mockery::mock(GearmanJob::class);
         $handler = \Mockery::mock(DBWriteHandler::class);
         $handler->shouldReceive('handle')
-            ->times(1);
+            ->withArgs([$gearmanJob])
+            ->once()
+            ->andReturn(true);
         $workerFactory = \Mockery::mock(WorkerFactory::class);
         $workerFactory->shouldReceive('createWorker')
-            ->times(1);
+            ->withArgs(['127.0.0.1', 4730])
+            ->once()
+            ->andReturn(Worker::class);
         $worker = new Worker($handler, $workerFactory);
         $worker->setHost('127.0.0.1');
         self::assertSame('127.0.0.1', $worker->getHost());
@@ -24,12 +31,17 @@ class WorkerTest extends TestCase
 
     public function testWorkerPort()
     {
+        $gearmanJob = \Mockery::mock(GearmanJob::class);
         $handler = \Mockery::mock(DBWriteHandler::class);
         $handler->shouldReceive('handle')
-            ->times(1);
+            ->withArgs([$gearmanJob])
+            ->once()
+            ->andReturn(true);
         $workerFactory = \Mockery::mock(WorkerFactory::class);
         $workerFactory->shouldReceive('createWorker')
-            ->times(1);
+            ->withArgs([$handler, 'writeToDB', '127.0.0.1', 4730])
+            ->once()
+            ->andReturn(Worker::class);
         $worker = new Worker($handler, $workerFactory);
         $worker->setPort(4730);
         self::assertSame(4730, $worker->getPort());
@@ -37,15 +49,21 @@ class WorkerTest extends TestCase
 
     public function testWorkerExecuting()
     {
+        $gearmanJob = \Mockery::mock(GearmanJob::class);
         $handler = \Mockery::mock(DBWriteHandler::class);
         $handler->shouldReceive('handle')
-            ->times(1);
-        $gearmanWorker = \Mockery::mock(\GearmanWorker::class);
+            ->withArgs([$gearmanJob])
+            ->once()
+            ->andReturn(true);
+        $gearmanWorker = \Mockery::mock(GearmanWorker::class);
         $gearmanWorker->shouldReceive('work')
+            ->withNoArgs()
+            ->once()
             ->andReturn(true);
         $workerFactory = \Mockery::mock(WorkerFactory::class);
         $workerFactory->shouldReceive('createWorker')
-            ->times(1)
+            ->withArgs([$handler, 'writeToDB', '127.0.0.1', 4730])
+            ->once()
             ->andReturn($gearmanWorker);
         $worker = new Worker($handler, $workerFactory);
         $worker->setHost('127.0.0.1');

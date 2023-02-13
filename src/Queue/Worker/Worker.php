@@ -25,6 +25,9 @@ class Worker
         $this->workerFactory = $workerFactory;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function work()
     {
         $this->init();
@@ -63,7 +66,8 @@ class Worker
         $this->worker = $this->workerFactory->createWorker(
             $this->handler,
             'writeToDB',
-            $this->getHost(), $this->getPort()
+            $this->getHost(),
+            $this->getPort()
         );
     }
 }

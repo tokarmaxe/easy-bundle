@@ -15,6 +15,8 @@ class HandlerTest extends TestCase
         $entityManager->shouldReceive('persist', 'flush');
         $gearmanJob = \Mockery::mock(\GearmanJob::class);
         $gearmanJob->shouldReceive('workload')
+            ->withNoArgs()
+            ->once()
             ->andReturn('String');
         $handler = new DBWriteHandler($entityManager);
         self::assertTrue($handler->handle($gearmanJob));
@@ -26,6 +28,8 @@ class HandlerTest extends TestCase
         $entityManager->shouldReceive('persist', 'flush')->andThrowExceptions([new ORMException]);
         $gearmanJob = \Mockery::mock(\GearmanJob::class);
         $gearmanJob->shouldReceive('workload')
+            ->withNoArgs()
+            ->once()
             ->andReturn('String');
         $handler = new DBWriteHandler($entityManager);
         self::assertFalse($handler->handle($gearmanJob));

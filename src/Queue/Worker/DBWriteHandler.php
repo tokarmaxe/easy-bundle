@@ -4,7 +4,6 @@ namespace Maxim\EasyBundle\Queue\Worker;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 use GearmanJob;
 use Maxim\EasyBundle\Entity\PostEntity;
 

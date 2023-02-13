@@ -1,5 +1,6 @@
 <?php
 phpinfo();
+exit();
 use Maxim\EasyBundle\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;

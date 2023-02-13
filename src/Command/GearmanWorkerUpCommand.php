@@ -19,10 +19,23 @@ class GearmanWorkerUpCommand extends Command
         $this->worker = $worker;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->worker->setHost('172.17.0.1');
         $this->worker->setPort(4730);
         $this->worker->work();
+    }
+
+    public function execOnce(): bool
+    {
+        $this->worker->setHost('172.17.0.1');
+        $this->worker->setPort(4730);
+        $this->worker->init();
+        $this->worker->runIteration();
+
+        return true;
     }
 }

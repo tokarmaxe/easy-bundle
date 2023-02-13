@@ -1,11 +1,12 @@
 <?php
 
-namespace Maxim\EasyBundle\Tests;
+namespace Maxim\EasyBundle\Tests\Functional;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use Maxim\EasyBundle\DataFixtures\PostFixtures;
 use Maxim\EasyBundle\Entity\PostEntity;
+use Maxim\EasyBundle\Tests\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\Process\Process;
 
